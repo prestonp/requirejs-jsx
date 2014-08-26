@@ -1,12 +1,11 @@
 (function() {
   var cfg = {
-    baseUrl: 'public'
+    baseUrl: 'js'
   , paths: {
       // plugins
-      react: '../bower_components/react/react'
-    , JSXTransformer: '../bower_components/react/JSXTransformer'
-    , text: '../bower_components/requirejs-text/text'
-    , jsx: '../jsx'
+      react: '../../bower_components/react/react'
+    , JSXTransformer: '../../bower_components/react/JSXTransformer'
+    , jsx: '../../jsx'
     }
   , deps: ['main']
   , packages: [

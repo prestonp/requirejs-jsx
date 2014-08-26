@@ -1,15 +1,10 @@
-/*
+/** 
+ * Example grunt task using requirejs optimizer with jsx dependencies
  */
 var _ = require('underscore')
 
-'use strict';
-
 module.exports = function(grunt) {
-
-  // Project configuration.
   grunt.initConfig({
-
-    // Configuration to be run (and then tested).
     requirejs: {
       app: {
         options: _.extend({}, require('./public/require-config'), {
@@ -18,16 +13,17 @@ module.exports = function(grunt) {
         , name: 'main'
         , out: 'public/dist/app.js'
         , optimize: 'uglify'
+        , shim: {
+            JSXTransformer: {
+                exports: 'JSXTransformer'
+            }
+          }
         })
       }
     }
   });
 
-  // Actually load this plugin's task(s).
-
-  // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-requirejs');
 
-  // 
   grunt.registerTask('default', ['requirejs']);
 };

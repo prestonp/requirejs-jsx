@@ -9,10 +9,6 @@ define(function(require, exports, module) {
       };
     },
 
-    componentDidMount: function() {
-
-    },
-
     render: function() {
       return (
         <h1>

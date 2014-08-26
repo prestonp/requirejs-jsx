@@ -1,16 +1,28 @@
-define(['JSXTransformer', 'text'], function(JSXTransformer, text) {
+define(['JSXTransformer'], function(JSXTransformer) {
   var buildMap = {};
 
   var jsx = {
     load: function(name, req, onLoadNative, config) {
       var url = req.toUrl(name + '.jsx');
+      request = new XMLHttpRequest();
+      request.open('GET', url, true);
 
-      var onLoad = function(content) {
-        content = JSXTransformer.transform(content).code;
-        return onLoadNative.fromText(content);
+      request.onreadystatechange = function() {
+        if (this.readyState === 4){
+          if (this.status >= 200 && this.status < 400){
+            // Success!
+            resp = this.responseText;
+            resp = JSXTransformer.transform(resp).code;
+            buildMap[name] = resp;
+            onLoadNative.fromText(resp);
+          } else {
+            onLoadNative.error(new Error('Unable to fetch resource' + url));
+          }
+        }
       };
 
-      text.load(url, req, onLoad, config);
+      request.send();
+      request = null;
 
       if (config.isBuild) {
         // plug into buildMap
