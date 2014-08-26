@@ -1,0 +1,20 @@
+{
+  "name": "jsx-requirejs",
+  "version": "0.0.0",
+  "authors": [
+    "Preston Pham <prestonp08@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.11.1",
+    "requirejs": "~2.1.14",
+    "requirejs-text": "~2.0.12"
+  }
+}
