@@ -1,4 +1,4 @@
-define(['react', 'jsx!component'], function(React, Component) {
+require(['react', 'jsx!component'], function(React, Component) {
   React.renderComponent(
     Component(null)
   , document.body

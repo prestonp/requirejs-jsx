@@ -41,20 +41,26 @@ define(['react', 'jsx!todoList'], function(React, TodoList) {
 });
 ```
 
-Working with Grunt 
+Offline transformations
 ---
 
-This project also serves as an example for a grunt based build. To run the example
+For production use, you shouldn't be fetching and transforming jsx files client-side. Instead, transform the JSX files offline via the requirejs optimizer.
 
-Install dependencies and assets
+For additional guidance, this project serves as an example of using the [http://requirejs.org/docs/download.html#rjs](optimizer) with the jsx plugin.
 
-`npm install`
-`bower install`
+Use the sample `build.js` file to concatenate and minify your scripts to  `/example/dist/app.js`
 
-Build the optimized js file (concatenating and minifying). This project's build file outputs to `/example/dist/app.js`.
+```
+r.js -o build.js
+```
 
-`grunt build`
-
-Run your favorite web server and view `/example/index.html`
+Run your favorite web server on the current directory
 
 `python -m SimpleHTTPServer`
+
+Then browse to `localhost:8000/example/index-optimized-build.html`
+which references our handy dandy build file:
+
+```
+<script data-main="dist/app" src="../bower_components/requirejs/require.js"></script>
+```
