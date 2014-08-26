@@ -6,7 +6,7 @@ define(['JSXTransformer'], function(JSXTransformer) {
         process.versions &&
         !!process.versions.node) {
       var fs = require.nodeRequire('fs');
-      fs.readFileSync(url, callback);
+      callback(null, fs.readFileSync(url, 'utf8'));
     } else {
       request = new XMLHttpRequest();
       request.open('GET', url, true);
@@ -15,8 +15,6 @@ define(['JSXTransformer'], function(JSXTransformer) {
           if (this.status >= 200 && this.status < 400){
             // Success!
             resp = this.responseText;
-            resp = JSXTransformer.transform(resp).code;
-            buildMap[name] = resp;
             callback(null, resp);
           } else {
             callback(new Error('Unable to fetch resource' + url));
@@ -34,6 +32,7 @@ define(['JSXTransformer'], function(JSXTransformer) {
 
       loadJSX(url, function(err, content) {
         if (err) return onLoadNative.error(err);
+        content = JSXTransformer.transform(content).code;
         buildMap[name] = content;
         onLoadNative.fromText(content);
       })

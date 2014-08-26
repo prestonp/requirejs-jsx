@@ -7,8 +7,8 @@ module.exports = function(grunt) {
   grunt.initConfig({
     requirejs: {
       app: {
-        options: _.extend({}, require('./public/require-config'), {
-          baseUrl: 'public'
+        options: _.extend({}, require('./example/require-config'), {
+          // baseUrl: 'public'
         , mainConfigFile: 'public/require-config.js'
         , name: 'main'
         , out: 'public/dist/app.js'
