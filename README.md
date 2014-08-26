@@ -8,15 +8,24 @@ Usage
 
 Note: This isn't published on the bower registry yet
 
+Install react (react.js and JSXTransformer.js)
+
+`bower install react`
+
 Install via bower
 
 `bower install requirejs-jsx`
 
-Add the plugin to your require config paths:
+Add the plugin to your require config paths. Ensure that
+react.js and JSXTransformer.js are included as well.
 
 ```javascript
-requirejs.config( {
-  jsx: 'path/to/jsx'
+requirejs.config({
+  paths: {
+    react: 'path/to/react'
+    JSXTransformer: 'path/to/JSXTransformer'
+  , jsx: 'path/to/jsx'
+  }
 });
 
 ```
